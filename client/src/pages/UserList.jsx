@@ -134,7 +134,7 @@ const TeamButton = styled.button`
 
 const ClearButton = styled.button`
   background: ${({ theme }) => theme.text_secondary + 10};
-  color: white;
+  color: ${({ theme }) => theme.text_secondary};
   border: none;
   padding: 10px 20px;
   height: 48px;
@@ -183,7 +183,7 @@ const UserList = () => {
   };
 
   useEffect(() => {
-    const fetchEmployees = async () => {
+    const fetchUsers = async () => {
       try {
         setLoading(true);
         await getUsers({
@@ -214,7 +214,7 @@ const UserList = () => {
         }
       }
     };
-    fetchEmployees();
+    fetchUsers();
   }, [searchQuery, filters, page]);
 
   return (

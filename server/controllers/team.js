@@ -28,6 +28,19 @@ export const createTeam = async (req, res, next) => {
   }
 };
 
+export const getTeams = async (req, res, next) => {
+  try {
+    const team = await Team.find().populate(
+      "team_members",
+      "first_name last_name avatar email domain available"
+    );
+
+    return res.status(200).json({ team });
+  } catch (err) {
+    return next(createError(err.statusCode, err.message));
+  }
+};
+
 export const getTeamById = async (req, res, next) => {
   try {
     const { id } = req.params;

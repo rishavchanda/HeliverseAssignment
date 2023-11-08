@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { createTeam } from "../api";
 import { openSnackbar } from "../redux/reducers/snackbarSlice";
+import { useNavigate } from "react-router-dom";
 
 const Body = styled.div`
   width: 100%;
@@ -123,6 +124,7 @@ const Button = styled.button`
 const CreateTask = ({ setOpenCreateTeam, team_members, setTeamMember }) => {
   // Hooks
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [loading, setLoading] = React.useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [errorMessage, setErrorMessage] = useState({ apierror: "" });
@@ -176,6 +178,7 @@ const CreateTask = ({ setOpenCreateTeam, team_members, setTeamMember }) => {
               apierror: "",
             });
             setOpenCreateTeam(false);
+            navigate("/teams");
           }
         })
         .catch((err) => {
